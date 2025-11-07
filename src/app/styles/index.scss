@@ -1,0 +1,9 @@
+@use './reset.scss';
+@use './variables/global.scss';
+
+body {
+	background-color: var(--bg-color);
+	color: var(--primary-color);
+	font: var(--font-m);
+	padding: 20px;
+}
