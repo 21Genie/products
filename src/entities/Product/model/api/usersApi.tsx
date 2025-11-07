@@ -1,12 +1,12 @@
 import { baseApi } from '../../../../shared/api/baseApi'
-import type { Pokemon } from '../types/product'
+import type { Product } from '../types/product'
 
 export const usersApi = baseApi.injectEndpoints({
 	endpoints: create => ({
-		getPokemon: create.query<{ results: Pokemon[] }, void>({
-			query: () => '/pokemon',
+		getProducts: create.query<{ products: Product[] }, number>({
+			query: (limit: number = 10) => `/products?limit=${limit}`,
 		}),
 	}),
 })
 
-export const { useGetPokemonQuery } = usersApi
+export const { useGetProductsQuery } = usersApi

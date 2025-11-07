@@ -22,7 +22,7 @@ export const ProductsListItem = ({
 			<Card>
 				<div className={style.imageWrapper}>
 					<img
-						src={images[0]}
+						src={images}
 						className={style.img}
 						alt={title}
 						width={200}
