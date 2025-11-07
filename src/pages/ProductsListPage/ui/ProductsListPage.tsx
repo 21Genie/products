@@ -11,6 +11,7 @@ import {
 export const ProductsListPage = () => {
 	const dispatch = useAppDispatch()
 	const products = useSelector(getProductsList)
+
 	const isLoading = useSelector(getProductsListIsLoading)
 
 	useEffect(() => {

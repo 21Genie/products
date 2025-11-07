@@ -17,6 +17,7 @@ export const ProductsList = ({ products, isLoading }: ProductsListProps) => {
 	const renderProducts = (product: Product) => {
 		return (
 			<ProductsListItem
+				id={product.id}
 				key={product.id}
 				title={product.title}
 				price={product.price}

@@ -4,10 +4,14 @@ import Delete from '../../../../shared/assets/icons/delete2.svg'
 import { Card } from '../../../../shared/ui/Card/Card'
 import style from './ProductsListItem.module.scss'
 import clsx from 'clsx'
+import { useAppDispatch } from '../../../../app/store/store'
+import { productListActions } from '../../../../pages/ProductsListPage/model/slice/productListSlice'
 
-interface ProductsListItemProps extends HTMLAttributes<HTMLDivElement> {
+type HTMLAttributesProps = Omit<HTMLAttributes<HTMLDivElement>, 'id'>
+
+interface ProductsListItemProps extends HTMLAttributesProps {
 	className?: string
-	id?: string
+	id?: number
 	title?: string
 	price?: number
 	images?: string
@@ -20,6 +24,14 @@ export const ProductsListItem = ({
 	price,
 	images = '',
 }: ProductsListItemProps) => {
+	const dispatch = useAppDispatch()
+
+	const handleDeleteProduct = () => {
+		if (id) {
+			dispatch(productListActions.deleteProduct({ id }))
+		}
+	}
+
 	return (
 		<div className={style.productsListItem}>
 			<Card>
@@ -35,7 +47,7 @@ export const ProductsListItem = ({
 						<Like />
 					</div>
 
-					<div className={style.delete}>
+					<div className={style.delete} onClick={handleDeleteProduct}>
 						<Delete />
 					</div>
 				</div>
