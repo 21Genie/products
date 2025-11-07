@@ -1,4 +1,4 @@
-.pokemonListItem {
+.productsListItem {
 	width: 230px;
 	cursor: pointer;
 	transition: 0.3s;
@@ -14,7 +14,6 @@
 }
 
 .imageWrapper {
-	position: relative;
 	width: 200px;
 	height: 200px;
 }
@@ -23,13 +22,14 @@
 	display: block;
 	width: 200px;
 	height: 200px;
-	background-color: #f2f2f2;
+	background-color: #cdcccc;
 	object-fit: cover;
 }
 
 .infoWrapper {
 	display: flex;
 	flex-direction: column;
+	gap: 10px;
 	justify-content: space-between;
 	margin-top: 20px;
 }

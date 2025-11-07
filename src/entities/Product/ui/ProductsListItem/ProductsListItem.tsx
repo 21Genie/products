@@ -18,7 +18,7 @@ export const ProductsListItem = ({
 	images = '',
 }: ProductsListItemProps) => {
 	return (
-		<div className={style.pokemonListItem}>
+		<div className={style.productsListItem}>
 			<Card>
 				<div className={style.imageWrapper}>
 					<img
