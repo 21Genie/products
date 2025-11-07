@@ -1,13 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useSelector, useDispatch } from 'react-redux'
-import { baseApi } from '../../shared/api/baseApi'
+import type { StateSchema } from './stateSchema'
+import { productListReducer } from '../../pages/ProductsListPage/model/slice/productListSlice'
 
-export const store = configureStore({
+export const store = configureStore<StateSchema>({
 	reducer: {
-		[baseApi.reducerPath]: baseApi.reducer,
+		product: productListReducer,
 	},
-	middleware: getDefaultMiddleware =>
-		getDefaultMiddleware().concat(baseApi.middleware),
 })
 
 export type AppState = ReturnType<typeof store.getState>

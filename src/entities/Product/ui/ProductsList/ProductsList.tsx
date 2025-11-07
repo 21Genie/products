@@ -24,6 +24,7 @@ export const ProductsList = ({ products, isLoading }: ProductsListProps) => {
 			/>
 		)
 	}
+
 	if (isLoading) {
 		return <div className={style.productsList}>{getSkeleton()}</div>
 	}
