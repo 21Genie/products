@@ -30,7 +30,5 @@ export const ProductsList = ({ products, isLoading }: ProductsListProps) => {
 		return <div className={style.productsList}>{getSkeleton()}</div>
 	}
 
-	return (
-		<div className={style.productsList}>{products.map(renderProducts)}</div>
-	)
+	return <ul className={style.productsList}>{products.map(renderProducts)}</ul>
 }

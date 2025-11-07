@@ -32,8 +32,12 @@ export const ProductsListItem = ({
 		}
 	}
 
+	const handleSetFavoriteProduct = () => {
+		dispatch(productListActions.setFavoriteProduct(true))
+	}
+
 	return (
-		<div className={style.productsListItem}>
+		<li className={style.productsListItem}>
 			<Card>
 				<div className={style.imageWrapper}>
 					<img
@@ -43,7 +47,10 @@ export const ProductsListItem = ({
 						width={200}
 						height={200}
 					/>
-					<div className={clsx(style.like, { [style.active]: false })}>
+					<div
+						onClick={handleSetFavoriteProduct}
+						className={clsx(style.like, { [style.active]: false })}
+					>
 						<Like />
 					</div>
 
@@ -56,6 +63,6 @@ export const ProductsListItem = ({
 					<p>{price}$</p>
 				</div>
 			</Card>
-		</div>
+		</li>
 	)
 }
