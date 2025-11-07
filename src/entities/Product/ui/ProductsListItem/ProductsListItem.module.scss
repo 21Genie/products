@@ -1,0 +1,42 @@
+.pokemonListItem {
+	width: 230px;
+	cursor: pointer;
+	transition: 0.3s;
+
+	&:hover {
+		opacity: 0.8;
+		transform: scale(1.02);
+
+		.date {
+			display: block;
+		}
+	}
+}
+
+.imageWrapper {
+	position: relative;
+	width: 200px;
+	height: 200px;
+}
+
+.img {
+	display: block;
+	width: 200px;
+	height: 200px;
+	background-color: #d2b600;
+	object-fit: cover;
+}
+
+.infoWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.title {
+	width: 200px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

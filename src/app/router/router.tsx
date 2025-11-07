@@ -1,5 +1,6 @@
 import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
 import { ROUTER_PATHS } from '../../shared/const/routes'
+import { ProductsListPage } from '../../pages/ProductsListPage'
 
 export const router = createBrowserRouter([
 	{
@@ -12,7 +13,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: `${ROUTER_PATHS.PRODUCTS_LIST}`,
-				element: <div>start</div>,
+				element: <ProductsListPage />,
 			},
 		],
 	},
