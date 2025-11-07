@@ -14,8 +14,51 @@
 }
 
 .imageWrapper {
+	position: relative;
 	width: 200px;
 	height: 200px;
+}
+
+.like {
+	position: absolute;
+	padding: 5px;
+	top: 0;
+	right: 0;
+
+	& svg {
+		width: 20px;
+		height: 20px;
+		fill: transparent;
+		stroke: #333;
+
+		&:hover {
+			fill: #ffdf33;
+		}
+	}
+
+	&.active {
+		& svg {
+			fill: #ffdf33;
+		}
+	}
+}
+
+.delete {
+	position: absolute;
+	padding: 5px;
+	top: 0;
+	left: 0;
+
+	& svg {
+		width: 20px;
+		height: 20px;
+		fill: transparent;
+		stroke: #333;
+
+		&:hover {
+			opacity: 0.6;
+		}
+	}
 }
 
 .img {

@@ -1,6 +1,9 @@
 import type { HTMLAttributes } from 'react'
+import Like from '../../../../shared/assets/icons/like.svg'
+import Delete from '../../../../shared/assets/icons/delete2.svg'
 import { Card } from '../../../../shared/ui/Card/Card'
 import style from './ProductsListItem.module.scss'
+import clsx from 'clsx'
 
 interface ProductsListItemProps extends HTMLAttributes<HTMLDivElement> {
 	className?: string
@@ -28,8 +31,14 @@ export const ProductsListItem = ({
 						width={200}
 						height={200}
 					/>
-				</div>
+					<div className={clsx(style.like, { [style.active]: false })}>
+						<Like />
+					</div>
 
+					<div className={style.delete}>
+						<Delete />
+					</div>
+				</div>
 				<div className={style.infoWrapper}>
 					<h3 className={style.title}>{title}</h3>
 					<p>{price}$</p>
