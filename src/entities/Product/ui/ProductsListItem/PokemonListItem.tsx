@@ -32,7 +32,7 @@ export const ProductsListItem = ({
 
 				<div className={style.infoWrapper}>
 					<h3 className={style.title}>{title}</h3>
-					<p>{price}</p>
+					<p>{price}$</p>
 				</div>
 			</Card>
 		</div>
