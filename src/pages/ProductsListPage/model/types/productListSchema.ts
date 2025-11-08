@@ -4,4 +4,5 @@ export interface ProductListSchema {
 	isLoading?: boolean
 	error?: string
 	products: Product[]
+	favoriteProducts: Product[]
 }

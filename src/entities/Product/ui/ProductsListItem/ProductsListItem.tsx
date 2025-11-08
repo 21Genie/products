@@ -1,16 +1,15 @@
-import type { HTMLAttributes } from 'react'
-import Like from '../../../../shared/assets/icons/like.svg'
+import clsx from 'clsx'
+import { useState, type HTMLAttributes } from 'react'
+import { useAppDispatch } from '../../../../app/store/store'
+import { productListActions } from '../../../../pages/ProductsListPage'
 import Delete from '../../../../shared/assets/icons/delete2.svg'
+import Like from '../../../../shared/assets/icons/like.svg'
 import { Card } from '../../../../shared/ui/Card/Card'
 import style from './ProductsListItem.module.scss'
-import clsx from 'clsx'
-import { useAppDispatch } from '../../../../app/store/store'
-import { productListActions } from '../../../../pages/ProductsListPage/model/slice/productListSlice'
 
 type HTMLAttributesProps = Omit<HTMLAttributes<HTMLDivElement>, 'id'>
 
 interface ProductsListItemProps extends HTMLAttributesProps {
-	className?: string
 	id?: number
 	title?: string
 	price?: number
@@ -18,12 +17,13 @@ interface ProductsListItemProps extends HTMLAttributesProps {
 }
 
 export const ProductsListItem = ({
-	className,
 	id,
 	title,
 	price,
 	images = '',
 }: ProductsListItemProps) => {
+	const [isFavoriteProduct, setIsFavoriteProduct] = useState(false)
+
 	const dispatch = useAppDispatch()
 
 	const handleDeleteProduct = () => {
@@ -33,7 +33,11 @@ export const ProductsListItem = ({
 	}
 
 	const handleSetFavoriteProduct = () => {
-		dispatch(productListActions.setFavoriteProduct(true))
+		setIsFavoriteProduct(isFavoriteProduct => !isFavoriteProduct)
+
+		if (id) {
+			dispatch(productListActions.toggleFavoriteProduct({ id }))
+		}
 	}
 
 	return (
@@ -49,7 +53,7 @@ export const ProductsListItem = ({
 					/>
 					<div
 						onClick={handleSetFavoriteProduct}
-						className={clsx(style.like, { [style.active]: false })}
+						className={clsx(style.like, { [style.active]: isFavoriteProduct })}
 					>
 						<Like />
 					</div>

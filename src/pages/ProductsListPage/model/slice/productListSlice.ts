@@ -6,6 +6,7 @@ const initialState: ProductListSchema = {
 	error: undefined,
 	isLoading: false,
 	products: [],
+	favoriteProducts: [],
 }
 
 export const productListSlice = createSlice({
@@ -17,8 +18,21 @@ export const productListSlice = createSlice({
 				product => product.id !== payload.id
 			)
 		},
-		setFavoriteProduct: (state, { payload }: PayloadAction<boolean>) => {
-			console.log(payload)
+		toggleFavoriteProduct: (
+			state,
+			{ payload }: PayloadAction<{ id: number }>
+		) => {
+			const product = state.products.find(item => item.id === payload.id)
+
+			if (product && !product.isFavorite) {
+				product.isFavorite = true
+				state.favoriteProducts.push(product)
+			} else {
+				if (product) product.isFavorite = false
+				state.favoriteProducts = state.favoriteProducts.filter(
+					item => item.id !== payload.id
+				)
+			}
 		},
 	},
 	extraReducers: build => {
@@ -31,7 +45,10 @@ export const productListSlice = createSlice({
 				state.error = undefined
 				state.isLoading = false
 
-				state.products = action.payload
+				state.products = action.payload.map(product => ({
+					...product,
+					isFavorite: false,
+				}))
 			})
 			.addCase(fetchProducts.rejected, state => {
 				state.isLoading = false
