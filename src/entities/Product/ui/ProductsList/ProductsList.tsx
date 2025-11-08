@@ -1,7 +1,7 @@
 import type { Product } from '../../model/types/product'
 import { ProductsListItem } from '../ProductsListItem/ProductsListItem'
 import { ProductsListItemSkeleton } from '../ProductsListItem/ProductsListItemSkeleton'
-import style from './ProductsList.module.scss'
+import styles from './ProductsList.module.scss'
 
 interface ProductsListProps {
 	products: Product[]
@@ -27,8 +27,13 @@ export const ProductsList = ({ products, isLoading }: ProductsListProps) => {
 	}
 
 	if (isLoading) {
-		return <div className={style.productsList}>{getSkeleton()}</div>
+		return <div className={styles.productsList}>{getSkeleton()}</div>
 	}
 
-	return <ul className={style.productsList}>{products.map(renderProducts)}</ul>
+	return (
+		<ul className={styles.productsList}>
+			{!products.length && <h2 className={styles.title}>Нет товаров</h2>}
+			{products.map(renderProducts)}
+		</ul>
+	)
 }

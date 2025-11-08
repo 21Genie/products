@@ -4,4 +4,11 @@
 	justify-content: center;
 	gap: 15px;
 	flex-wrap: wrap;
+	min-height: 70vh;
+}
+
+.title {
+	justify-self: center;
+	align-self: center;
+	grid-column: 1/-1;
 }

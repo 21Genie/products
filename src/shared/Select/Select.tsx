@@ -1,6 +1,6 @@
-import { type ChangeEvent, type SelectHTMLAttributes, useMemo } from 'react'
-import cls from './Select.module.scss'
 import clsx from 'clsx'
+import { type ChangeEvent, type SelectHTMLAttributes, useMemo } from 'react'
+import styles from './Select.module.scss'
 
 export interface SelectOptions<T> {
 	value: T
@@ -38,7 +38,7 @@ export const Select = <T extends string>({
 	)
 
 	const mods = {
-		[cls.readonly]: readonly,
+		[styles.readonly]: readonly,
 	}
 
 	const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -46,10 +46,10 @@ export const Select = <T extends string>({
 	}
 
 	return (
-		<div className={clsx(cls.wrapper, [className], mods)}>
-			{label && <span className={cls.label}>{`${label}>`}</span>}
+		<div className={clsx(styles.wrapper, [className], mods)}>
+			{label && <span className={styles.label}>{`${label}>`}</span>}
 			<select
-				className={cls.select}
+				className={styles.select}
 				value={value}
 				onChange={onChangeHandler}
 				disabled={readonly}

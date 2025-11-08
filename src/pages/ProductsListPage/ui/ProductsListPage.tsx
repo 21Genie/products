@@ -14,10 +14,7 @@ import { productListActions } from '../model/slice/productListSlice'
 
 export const ProductsListPage = () => {
 	const dispatch = useAppDispatch()
-
 	const products = useAppSelector(getProductsList)
-	const favoriteProducts = useAppSelector(getFavoriteProducts)
-
 	const isLoading = useAppSelector(getProductsListIsLoading)
 
 	const onChangeFilter = useCallback(
