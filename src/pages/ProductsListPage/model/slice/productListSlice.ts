@@ -1,12 +1,15 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { ProductListSchema } from '../types/productListSchema'
 import { fetchProducts } from '../services/fetchProducts'
+import { ProductFilter } from '../../../../shared/const/consts'
 
 const initialState: ProductListSchema = {
 	error: undefined,
 	isLoading: false,
 	products: [],
 	favoriteProducts: [],
+	saveProduct: [],
+	productFilter: ProductFilter.ALL,
 }
 
 export const productListSlice = createSlice({
@@ -14,6 +17,11 @@ export const productListSlice = createSlice({
 	initialState,
 	reducers: {
 		deleteProduct: (state, { payload }: PayloadAction<{ id: number }>) => {
+			const product = state.products.find(item => item.id === payload.id)
+			state.favoriteProducts = state.favoriteProducts.filter(
+				item => item.id !== product?.id
+			)
+
 			state.products = state.products.filter(
 				product => product.id !== payload.id
 			)
@@ -32,6 +40,15 @@ export const productListSlice = createSlice({
 				state.favoriteProducts = state.favoriteProducts.filter(
 					item => item.id !== payload.id
 				)
+			}
+		},
+		setProductFilter: (state, { payload }: PayloadAction<ProductFilter>) => {
+			if (payload === 'favorite') {
+				state.saveProduct = state.products
+				state.products = state.favoriteProducts
+			}
+			if (payload === 'all') {
+				state.products = state.saveProduct
 			}
 		},
 	},
