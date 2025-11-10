@@ -6,6 +6,7 @@ import Delete from '../../../../shared/assets/icons/delete2.svg'
 import Like from '../../../../shared/assets/icons/like.svg'
 import { Card } from '../../../../shared/ui/Card/Card'
 import style from './ProductsListItem.module.scss'
+import { AppLink } from '../../../../shared/ui/AppLink/AppLink'
 
 type HTMLAttributesProps = Omit<HTMLAttributes<HTMLDivElement>, 'id'>
 
@@ -26,13 +27,21 @@ export const ProductsListItem = ({
 
 	const dispatch = useAppDispatch()
 
-	const handleDeleteProduct = () => {
+	const handleDeleteProduct = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>
+	) => {
+		e.preventDefault()
+		e.stopPropagation()
 		if (id) {
 			dispatch(productListActions.deleteProduct({ id }))
 		}
 	}
 
-	const handleSetFavoriteProduct = () => {
+	const handleSetFavoriteProduct = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>
+	) => {
+		e.preventDefault()
+		e.stopPropagation()
 		setIsFavoriteProduct(isFavoriteProduct => !isFavoriteProduct)
 
 		if (id) {
@@ -43,29 +52,33 @@ export const ProductsListItem = ({
 	return (
 		<li className={style.productsListItem}>
 			<Card>
-				<div className={style.imageWrapper}>
-					<img
-						src={images}
-						className={style.img}
-						alt={title}
-						width={200}
-						height={200}
-					/>
-					<div
-						onClick={handleSetFavoriteProduct}
-						className={clsx(style.like, { [style.active]: isFavoriteProduct })}
-					>
-						<Like />
-					</div>
+				<AppLink to={`/products/${id}`}>
+					<div className={style.imageWrapper}>
+						<img
+							src={images}
+							className={style.img}
+							alt={title}
+							width={200}
+							height={200}
+						/>
+						<div
+							onClick={handleSetFavoriteProduct}
+							className={clsx(style.like, {
+								[style.active]: isFavoriteProduct,
+							})}
+						>
+							<Like />
+						</div>
 
-					<div className={style.delete} onClick={handleDeleteProduct}>
-						<Delete />
+						<div className={style.delete} onClick={handleDeleteProduct}>
+							<Delete />
+						</div>
 					</div>
-				</div>
-				<div className={style.infoWrapper}>
-					<h3 className={style.title}>{title}</h3>
-					<p>{price}$</p>
-				</div>
+					<div className={style.infoWrapper}>
+						<h3 className={style.title}>{title}</h3>
+						<p>{price}$</p>
+					</div>
+				</AppLink>
 			</Card>
 		</li>
 	)

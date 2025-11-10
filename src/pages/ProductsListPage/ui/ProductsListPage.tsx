@@ -5,7 +5,6 @@ import { fetchProducts } from '../model/services/fetchProducts'
 
 import { Filters } from '../../../features/filters'
 import {
-	getFavoriteProducts,
 	getProductsList,
 	getProductsListIsLoading,
 } from '../model/selectors/productsListSelectors'

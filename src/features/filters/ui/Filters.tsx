@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import styles from './Filters.module.scss'
 import { ProductFilter } from '../../../shared/const/consts'
 import { useMemo } from 'react'
-import { Select, type SelectOptions } from '../../../shared/Select/Select'
+import { Select, type SelectOptions } from '../../../shared/ui/Select/Select'
 
 interface FilterProductProps {
 	className?: string
@@ -22,8 +22,8 @@ export const Filters = ({
 				content: 'All',
 			},
 			{
-				value: ProductFilter.FAVORITE,
-				content: 'Favorite',
+				value: ProductFilter.FAVORITES,
+				content: 'Favorites',
 			},
 		],
 		[]

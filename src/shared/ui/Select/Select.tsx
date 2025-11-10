@@ -47,7 +47,7 @@ export const Select = <T extends string>({
 
 	return (
 		<div className={clsx(styles.wrapper, [className], mods)}>
-			{label && <span className={styles.label}>{`${label}>`}</span>}
+			{label && <span className={styles.label}>{`${label}:`}</span>}
 			<select
 				className={styles.select}
 				value={value}
