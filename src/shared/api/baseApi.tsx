@@ -5,5 +5,4 @@ const baseUrl = 'https://dummyjson.com/'
 export const baseApi = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: () => ({}),
-	tagTypes: ['products'],
 })
