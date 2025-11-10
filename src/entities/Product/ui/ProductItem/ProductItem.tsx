@@ -1,13 +1,49 @@
-import { useParams } from 'react-router-dom'
-import styles from './ProductItem.module.scss'
+import { useCallback } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useGetDetailsProductQuery } from '../../../../features/filters/model/api/detailsProduct'
+import { Button } from '../../../../shared/ui/Button/Button'
+import { Loader } from '../../../../shared/ui/Loader/Loader'
+import styles from './DetailsProductItem.module.scss'
 
-interface ProductItemProps {
-	className?: string
-}
-
-export const ProductItem = ({ className }: ProductItemProps) => {
+export const DetailsProductItem = () => {
 	const { id } = useParams()
-	console.log(id)
+	const { data, isLoading } = useGetDetailsProductQuery({ id: id || '' })
+	const navigate = useNavigate()
 
-	return <div className={styles.productItem}>product</div>
+	const backToProducts = useCallback(() => {
+		navigate('/products')
+	}, [navigate])
+
+	if (isLoading) {
+		return (
+			<div className={styles.loadingWrapper}>
+				<Loader />
+			</div>
+		)
+	}
+
+	return (
+		<div className={styles.detailsProductItem}>
+			<div className={styles.imageWrapper}>
+				<img
+					className={styles.image}
+					src={data?.images[0]}
+					alt={data?.title}
+					width={400}
+					height={400}
+				/>
+			</div>
+
+			<div className={styles.infoWrapper}>
+				<Button onClick={backToProducts} className={styles.button}>
+					Back
+				</Button>
+				<h3 className={styles.title}>{data?.title}</h3>
+				<div>
+					<p className={styles.price}>{data?.price} $</p>
+					<p className={styles.description}>{data?.description}</p>
+				</div>
+			</div>
+		</div>
+	)
 }

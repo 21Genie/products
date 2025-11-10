@@ -1,2 +1,2 @@
 export { ProductsList } from './ui/ProductsList/ProductsList'
-export { ProductItem } from './ui/ProductItem/ProductItem'
+export { DetailsProductItem as ProductItem } from './ui/ProductItem/ProductItem'
