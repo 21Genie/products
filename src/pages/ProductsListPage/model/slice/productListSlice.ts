@@ -48,6 +48,8 @@ export const productListSlice = createSlice({
 			}
 		},
 		setProductFilter: (state, { payload }: PayloadAction<ProductFilter>) => {
+			state.productFilter = payload
+
 			if (payload === 'favorites') {
 				state.saveProduct = state.products
 				state.products = state.favoriteProducts

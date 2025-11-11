@@ -24,7 +24,13 @@ export const ProductsListPage = () => {
 
 	const onChangeFilter = useCallback(
 		(newFilter: ProductFilter) => {
+			if (newFilter === 'favorites') {
+				dispatch(productListActions.setProductFilter(newFilter))
+				return
+			}
+
 			dispatch(productListActions.setProductFilter(newFilter))
+			dispatch(fetchProducts({ numberPage: 1 }))
 		},
 		[dispatch]
 	)
