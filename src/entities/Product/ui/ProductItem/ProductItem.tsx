@@ -1,13 +1,14 @@
 import { useCallback } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useGetDetailsProductQuery } from '../../../../features/filters/model/api/detailsProduct'
+import { useTypedProductDetails } from '../../../../features/filters/model/api/detailsProduct'
 import { Button } from '../../../../shared/ui/Button/Button'
 import { Loader } from '../../../../shared/ui/Loader/Loader'
 import styles from './DetailsProductItem.module.scss'
 
 export const DetailsProductItem = () => {
 	const { id } = useParams()
-	const { data, isLoading } = useGetDetailsProductQuery({ id: id || '' })
+	const { data, isLoading, error } = useTypedProductDetails({ id: id || '' })
+
 	const navigate = useNavigate()
 
 	const backToProducts = useCallback(() => {
@@ -18,6 +19,19 @@ export const DetailsProductItem = () => {
 		return (
 			<div className={styles.loadingWrapper}>
 				<Loader />
+			</div>
+		)
+	}
+
+	if (error) {
+		return (
+			<div className={styles.detailsProductItem}>
+				<Button onClick={backToProducts} className={styles.button}>
+					Back
+				</Button>
+				<div className={styles.errorInfo}>
+					<p className={styles.error}>{error.data.message}</p>
+				</div>
 			</div>
 		)
 	}

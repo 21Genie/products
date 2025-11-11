@@ -6,17 +6,38 @@ import { Button } from '../../../shared/ui/Button/Button'
 import { Input } from '../../../shared/ui/Input/Input'
 import { productListActions } from '../../ProductsListPage/model/slice/productListSlice'
 import styles from './CreateProductPage.module.scss'
+import clsx from 'clsx'
 
 export const CreateProductPage = () => {
 	const [title, setTitle] = useState<string>('')
 	const [price, setPrice] = useState<string>('')
 	const [description, setDescription] = useState<string>('')
 	const [image, setImage] = useState<string>('')
+	const [isValid, setIsValid] = useState(false)
+	const validImage = image.length > 0 ? image : undefined
+
 	const dispatch = useAppDispatch()
 
-	const createProduct = () => {
+	const validateForm = () => {
+		if (!title.length || !price.length) {
+			setIsValid(true)
+			return true
+		}
+
+		setIsValid(false)
+	}
+
+	const createProduct = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) => {
+		e.preventDefault()
+
+		if (validateForm()) {
+			return
+		}
+
 		const product: Product = {
-			id: Number(price) + 1,
+			id: Number(price) + 999,
 			title,
 			price: Number(price),
 			description,
@@ -36,7 +57,7 @@ export const CreateProductPage = () => {
 	return (
 		<div className={styles.createProductPage}>
 			<div className={styles.imageWrapper}>
-				<img className={styles.image} src={image} />
+				<img className={styles.image} src={validImage} />
 			</div>
 
 			<div className={styles.infoWrapper}>
@@ -47,6 +68,10 @@ export const CreateProductPage = () => {
 
 				<form className={styles.form}>
 					<Input
+						autoFocus
+						className={clsx({
+							[styles.isValid]: isValid,
+						})}
 						value={title}
 						onChange={setTitle}
 						name='name'
@@ -55,6 +80,9 @@ export const CreateProductPage = () => {
 						required
 					/>
 					<Input
+						className={clsx({
+							[styles.isValid]: isValid,
+						})}
 						value={price}
 						onChange={setPrice}
 						name='price'
@@ -78,7 +106,11 @@ export const CreateProductPage = () => {
 						required
 					/>
 
-					<Button onClick={createProduct} className={styles.createBtn}>
+					<Button
+						type='submit'
+						onClick={createProduct}
+						className={styles.createBtn}
+					>
 						Create
 					</Button>
 				</form>

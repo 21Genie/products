@@ -19,8 +19,6 @@ export const productListSlice = createSlice({
 	initialState,
 	reducers: {
 		createProduct: (state, { payload }: PayloadAction<Product>) => {
-			console.log(payload)
-
 			state.createProducts.push(payload)
 		},
 		deleteProduct: (state, { payload }: PayloadAction<{ id: number }>) => {
@@ -74,8 +72,9 @@ export const productListSlice = createSlice({
 					isFavorite: false,
 				}))
 
-				if (state.createProducts.length > 0)
-					state.products.push(state.createProducts[0])
+				if (state.createProducts.length > 0) {
+					state.createProducts.map(item => state.products.push(item))
+				}
 			})
 			.addCase(fetchProducts.rejected, state => {
 				state.isLoading = false
