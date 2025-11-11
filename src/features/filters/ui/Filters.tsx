@@ -25,6 +25,10 @@ export const Filters = ({
 				value: ProductFilter.FAVORITES,
 				content: 'Favorites',
 			},
+			{
+				value: ProductFilter.TITLE,
+				content: 'Title',
+			},
 		],
 		[]
 	)

@@ -9,5 +9,8 @@ export const getProductsListIsLoading = (state: StateSchema) =>
 export const getProductsListError = (state: StateSchema) =>
 	state.product.error || false
 
+export const getProductsListFilter = (state: StateSchema) =>
+	state.product.productFilter
+
 export const getFavoriteProducts = (state: StateSchema) =>
 	state.product.favoriteProducts || []
