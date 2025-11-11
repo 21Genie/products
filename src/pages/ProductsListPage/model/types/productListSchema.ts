@@ -6,6 +6,7 @@ export interface ProductListSchema {
 	error?: string
 	products: Product[]
 	favoriteProducts: Product[]
+	createProducts: Product[]
 	saveProduct: Product[]
 	productFilter: ProductFilter
 }
