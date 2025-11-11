@@ -15,6 +15,7 @@ import { ROUTER_PATHS } from '../../../shared/const/routes'
 import { AppLink } from '../../../shared/ui/AppLink/AppLink'
 import { Button } from '../../../shared/ui/Button/Button'
 import styles from './ProductsListPage.module.scss'
+import { Pagination } from '../../../features/pagination/ui/Pagination'
 
 export const ProductsListPage = () => {
 	const dispatch = useAppDispatch()
@@ -29,7 +30,7 @@ export const ProductsListPage = () => {
 	)
 
 	useEffect(() => {
-		dispatch(fetchProducts())
+		dispatch(fetchProducts({ numberPage: 0 }))
 	}, [dispatch])
 
 	return (
@@ -41,6 +42,9 @@ export const ProductsListPage = () => {
 				</AppLink>
 			</div>
 			<ProductsList products={products} isLoading={isLoading} />
+			<div className={styles.paginationWrapper}>
+				<Pagination />
+			</div>
 		</section>
 	)
 }
