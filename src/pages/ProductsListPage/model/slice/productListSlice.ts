@@ -2,12 +2,14 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { ProductListSchema } from '../types/productListSchema'
 import { fetchProducts } from '../services/fetchProducts'
 import { ProductFilter } from '../../../../shared/const/consts'
+import type { Product } from '../../../../entities/Product/model/types/product'
 
 const initialState: ProductListSchema = {
 	error: undefined,
 	isLoading: false,
 	products: [],
 	favoriteProducts: [],
+	createProducts: [],
 	saveProduct: [],
 	productFilter: ProductFilter.ALL,
 }
@@ -16,6 +18,9 @@ export const productListSlice = createSlice({
 	name: 'productList',
 	initialState,
 	reducers: {
+		createProduct: (state, { payload }: PayloadAction<Product>) => {
+			state.createProducts.push(payload)
+		},
 		deleteProduct: (state, { payload }: PayloadAction<{ id: number }>) => {
 			const product = state.products.find(item => item.id === payload.id)
 			state.favoriteProducts = state.favoriteProducts.filter(
@@ -66,6 +71,10 @@ export const productListSlice = createSlice({
 					...product,
 					isFavorite: false,
 				}))
+
+				if (state.createProducts.length > 0) {
+					state.createProducts.map(item => state.products.push(item))
+				}
 			})
 			.addCase(fetchProducts.rejected, state => {
 				state.isLoading = false

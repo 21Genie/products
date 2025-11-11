@@ -4,12 +4,17 @@ import { ProductsList } from '../../../entities/Product'
 import { fetchProducts } from '../model/services/fetchProducts'
 
 import { Filters } from '../../../features/filters'
+import type { ProductFilter } from '../../../shared/const/consts'
 import {
 	getProductsList,
 	getProductsListIsLoading,
 } from '../model/selectors/productsListSelectors'
-import type { ProductFilter } from '../../../shared/const/consts'
 import { productListActions } from '../model/slice/productListSlice'
+
+import { ROUTER_PATHS } from '../../../shared/const/routes'
+import { AppLink } from '../../../shared/ui/AppLink/AppLink'
+import { Button } from '../../../shared/ui/Button/Button'
+import styles from './ProductsListPage.module.scss'
 
 export const ProductsListPage = () => {
 	const dispatch = useAppDispatch()
@@ -29,7 +34,12 @@ export const ProductsListPage = () => {
 
 	return (
 		<section>
-			<Filters onChangeFilter={onChangeFilter} />
+			<div className={styles.header}>
+				<Filters onChangeFilter={onChangeFilter} />
+				<AppLink to={ROUTER_PATHS.CREATE_PRODUCT}>
+					<Button>Create product</Button>
+				</AppLink>
+			</div>
 			<ProductsList products={products} isLoading={isLoading} />
 		</section>
 	)

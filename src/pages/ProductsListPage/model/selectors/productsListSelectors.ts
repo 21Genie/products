@@ -6,5 +6,8 @@ export const getProductsList = (state: StateSchema) =>
 export const getProductsListIsLoading = (state: StateSchema) =>
 	state.product.isLoading || false
 
+export const getProductsListError = (state: StateSchema) =>
+	state.product.error || false
+
 export const getFavoriteProducts = (state: StateSchema) =>
 	state.product.favoriteProducts || []

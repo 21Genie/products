@@ -8,7 +8,8 @@
 .detailsProductItem {
 	position: relative;
 	display: flex;
-	background-color: rgb(180, 186, 191);
+	color: #fff;
+	background-color: var(--bg-color-card);
 	gap: 25px;
 	min-height: 400px;
 	border-radius: 10px;
@@ -51,4 +52,13 @@
 
 .description {
 	max-width: 400px;
+}
+
+.errorInfo {
+	margin: 0 auto;
+	align-self: center;
+}
+
+.error {
+	font-size: 30px;
 }

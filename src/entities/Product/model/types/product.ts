@@ -2,7 +2,7 @@ export interface Product {
 	id: number
 	title: string
 	price: number
-	images: string
+	images: string[]
 	description?: string
 	isFavorite: boolean
 }
