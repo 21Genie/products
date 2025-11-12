@@ -1,19 +1,15 @@
 import { Pagination as PaginationMu, Stack } from '@mui/material'
-import styles from './Pagination.module.scss'
-import { useState } from 'react'
-import { useAppDispatch } from '../../../app/store/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store/store'
+import { productListActions } from '../../../pages/ProductsListPage'
+import { getProductsListPage } from '../../../pages/ProductsListPage/model/selectors/productsListSelectors'
 import { fetchProducts } from '../../../pages/ProductsListPage/model/services/fetchProducts'
+import styles from './Pagination.module.scss'
 
-interface PaginationProps {
-	className?: string
-}
-
-export const Pagination = ({ className }: PaginationProps) => {
-	const [page, setPage] = useState(1)
+export const Pagination = () => {
 	const dispatch = useAppDispatch()
+	const page = useAppSelector(getProductsListPage)
 
 	const handelChangePage = (_: any, numberPage: number) => {
-		setPage(numberPage)
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth',
@@ -22,7 +18,7 @@ export const Pagination = ({ className }: PaginationProps) => {
 			dispatch(fetchProducts({ numberPage: 0 }))
 			return
 		}
-
+		dispatch(productListActions.setPage(numberPage))
 		dispatch(fetchProducts({ numberPage: numberPage * 10 }))
 	}
 

@@ -12,6 +12,7 @@ const initialState: ProductListSchema = {
 	createProducts: [],
 	saveProduct: [],
 	productFilter: ProductFilter.ALL,
+	page: 1,
 }
 
 export const productListSlice = createSlice({
@@ -57,6 +58,9 @@ export const productListSlice = createSlice({
 			if (payload === 'all') {
 				state.products = state.saveProduct
 			}
+		},
+		setPage: (state, { payload }: PayloadAction<number>) => {
+			state.page = payload
 		},
 	},
 	extraReducers: build => {

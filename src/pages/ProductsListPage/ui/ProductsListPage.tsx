@@ -30,6 +30,7 @@ export const ProductsListPage = () => {
 			}
 
 			dispatch(productListActions.setProductFilter(newFilter))
+			dispatch(productListActions.setPage(1))
 			dispatch(fetchProducts({ numberPage: 1 }))
 		},
 		[dispatch]
