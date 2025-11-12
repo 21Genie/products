@@ -1,10 +1,10 @@
-import { createBrowserRouter, redirect, RouterProvider } from 'react-router-dom'
+import { createHashRouter, redirect, RouterProvider } from 'react-router-dom'
 import { DetailsProductPage } from '../../pages/DetailsProductPage'
 import { ProductsListPage } from '../../pages/ProductsListPage'
 import { ROUTER_PATHS } from '../../shared/const/routes'
 import { CreateProductPage } from '../../pages/CreateProductPage/ui/CreateProductPage'
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
 	{
 		path: '/',
 		element: null,
