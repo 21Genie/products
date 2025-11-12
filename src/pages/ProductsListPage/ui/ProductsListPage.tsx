@@ -44,14 +44,17 @@ export const ProductsListPage = () => {
 		<section>
 			<div className={styles.header}>
 				<Filters onChangeFilter={onChangeFilter} />
+				<p>Лучше использовать VPN</p>
 				<AppLink to={ROUTER_PATHS.CREATE_PRODUCT}>
 					<Button>Create product</Button>
 				</AppLink>
 			</div>
 			<ProductsList products={products} isLoading={isLoading} />
-			<div className={styles.paginationWrapper}>
-				<Pagination />
-			</div>
+			{products.length > 0 && (
+				<div className={styles.paginationWrapper}>
+					<Pagination />
+				</div>
+			)}
 		</section>
 	)
 }
