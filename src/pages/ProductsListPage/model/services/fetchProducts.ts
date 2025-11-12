@@ -9,7 +9,6 @@ export const fetchProducts = createAsyncThunk<
 	{ numberPage: number }
 >('productList', async ({ numberPage }, { rejectWithValue, getState }) => {
 	const filter = getProductsListFilter(getState() as StateSchema)
-	console.log(filter)
 
 	try {
 		const response = await axios.get(

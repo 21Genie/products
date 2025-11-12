@@ -12,5 +12,7 @@ export const getProductsListError = (state: StateSchema) =>
 export const getProductsListFilter = (state: StateSchema) =>
 	state.product.productFilter
 
+export const getProductsListPage = (state: StateSchema) => state.product.page
+
 export const getFavoriteProducts = (state: StateSchema) =>
 	state.product.favoriteProducts || []

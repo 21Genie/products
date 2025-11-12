@@ -9,4 +9,5 @@ export interface ProductListSchema {
 	createProducts: Product[]
 	saveProduct: Product[]
 	productFilter: ProductFilter
+	page: number
 }
