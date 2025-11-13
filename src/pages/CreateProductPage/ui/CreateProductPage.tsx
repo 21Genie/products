@@ -8,7 +8,7 @@ import { productListActions } from '../../ProductsListPage/model/slice/productLi
 import styles from './CreateProductPage.module.scss'
 import clsx from 'clsx'
 
-export const CreateProductPage = () => {
+const CreateProductPage = () => {
 	const [title, setTitle] = useState<string>('')
 	const [price, setPrice] = useState<string>('')
 	const [description, setDescription] = useState<string>('')
@@ -118,3 +118,5 @@ export const CreateProductPage = () => {
 		</div>
 	)
 }
+
+export default CreateProductPage

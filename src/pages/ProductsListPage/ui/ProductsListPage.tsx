@@ -17,7 +17,7 @@ import { Button } from '../../../shared/ui/Button/Button'
 import styles from './ProductsListPage.module.scss'
 import { Pagination } from '../../../features/pagination/ui/Pagination'
 
-export const ProductsListPage = () => {
+const ProductsListPage = () => {
 	const dispatch = useAppDispatch()
 	const products = useAppSelector(getProductsList)
 	const isLoading = useAppSelector(getProductsListIsLoading)
@@ -58,3 +58,5 @@ export const ProductsListPage = () => {
 		</section>
 	)
 }
+
+export default ProductsListPage
