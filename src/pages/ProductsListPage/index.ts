@@ -1,4 +1,4 @@
-export { ProductsListPage } from './ui/ProductsListPage'
+export { ProductsListPageAsync as ProductsListPage } from './ui/ProductsListPage.async'
 export type { ProductListSchema } from './model/types/productListSchema'
 export {
 	productListReducer,
