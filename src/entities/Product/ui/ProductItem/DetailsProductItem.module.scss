@@ -6,33 +6,36 @@
 }
 
 .detailsProductItem {
-	position: relative;
-	display: flex;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
 	color: #fff;
-	background-color: var(--bg-color-card);
+	background-color: var(--bg-color-card-details);
 	gap: 25px;
 	min-height: 400px;
 	border-radius: 10px;
+	padding: 24px 16px;
 }
 
 .imageWrapper {
-	align-self: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 350px;
 }
 
 .image {
 	object-fit: cover;
+	height: auto;
 }
 
 .infoWrapper {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 10px;
 	gap: 20px;
 }
 
 .button {
-	position: absolute;
 	top: 20px;
 	right: 20px;
 	border-radius: 10px;

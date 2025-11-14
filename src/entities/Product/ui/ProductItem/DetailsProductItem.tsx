@@ -43,20 +43,23 @@ export const DetailsProductItem = () => {
 					className={styles.image}
 					src={data?.images[0]}
 					alt={data?.title}
-					width={400}
+					width={350}
 					height={400}
 				/>
 			</div>
 
 			<div className={styles.infoWrapper}>
-				<Button onClick={backToProducts} className={styles.button}>
-					Back
-				</Button>
 				<h3 className={styles.title}>{data?.title}</h3>
 				<div>
 					<p className={styles.price}>{data?.price} $</p>
 					<p className={styles.description}>{data?.description}</p>
 				</div>
+			</div>
+
+			<div>
+				<Button onClick={backToProducts} className={styles.button}>
+					Back
+				</Button>
 			</div>
 		</div>
 	)

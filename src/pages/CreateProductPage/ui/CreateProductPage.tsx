@@ -57,15 +57,15 @@ const CreateProductPage = () => {
 	return (
 		<div className={styles.createProductPage}>
 			<div className={styles.imageWrapper}>
-				<img className={styles.image} src={validImage} />
+				{validImage ? (
+					<img className={styles.image} src={validImage} />
+				) : (
+					<p>Place for your picture</p>
+				)}
 			</div>
 
 			<div className={styles.infoWrapper}>
 				<h1 className={styles.title}>Create product</h1>
-				<Button onClick={backToProducts} className={styles.button}>
-					Back
-				</Button>
-
 				<form className={styles.form}>
 					<Input
 						autoFocus
@@ -114,6 +114,11 @@ const CreateProductPage = () => {
 						Create
 					</Button>
 				</form>
+			</div>
+			<div>
+				<Button onClick={backToProducts} className={styles.button}>
+					Back
+				</Button>
 			</div>
 		</div>
 	)
